@@ -1,4 +1,4 @@
-<h1><%= @count %> Total Stores</h1>
+<h1><%= @presenter.count %> Total Stores</h1>
 
 <table class="table">
   <tr>
@@ -8,7 +8,7 @@
     <th>Phone</th>
     <th>Type</th>
   </tr>
-  <% @stores.each do |store| %>
+  <% @presenter.stores.each do |store| %>
     <tr class="store">
       <th class="name"><%= store.name %></th>
       <th class="city"><%= store.city %></th>
