@@ -18,4 +18,20 @@ describe 'Items API' do
     expect(item).to_not have_key 'created_at'
     expect(item).to_not have_key 'updated_at'
   end
+
+  it "returns a single item" do
+    base_item = create(:item)
+
+    get "/api/v1/items/#{base_item.id}"
+
+    expect(response).to be_success
+
+    item = JSON.parse(response.body)
+
+    expect(item['name']).to eq base_item.name
+    expect(item['description']).to eq base_item.description
+    expect(item['image_url']).to eq base_item.image_url
+    expect(item).to_not have_key 'created_at'
+    expect(item).to_not have_key 'updated_at'
+  end
 end
