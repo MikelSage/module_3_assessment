@@ -1,4 +1,4 @@
-class Api::V1::ItemsController < ActionController::API
+class Api::V1::ItemsController < ApplicationController
   def index
     render json: Item.all
   end
@@ -8,6 +8,9 @@ class Api::V1::ItemsController < ActionController::API
   end
 
   def destroy
-    Item.destroy(params[:id])
+    Item.delete(params[:id])
+    render :nothing => true, :status => 204
   end
+
+  
 end
