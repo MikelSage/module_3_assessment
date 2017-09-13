@@ -46,13 +46,13 @@ describe 'Items API' do
   end
 
   it "creates an item" do
-    item_params = {
+    item_params = {item: {
       name: 'The best item',
       description: 'You already know what it is',
       image_url: 'http://via.placeholder.com/350x150'
-    }
+    }}
 
-    post '/api/v1/items', params: item_params
+    post '/api/v1/items', item_params
 
     item = JSON.parse(response.body)
 
@@ -60,8 +60,8 @@ describe 'Items API' do
 
     expect(item).to_not have_key 'created_at'
     expect(item).to_not have_key 'updated_at'
-    expect(item['name']).to eq item_params['name']
-    expect(item['description']).to eq item_params['description']
-    expect(item['image_url']).to eq item_params['image_url']
+    expect(item['name']).to eq item_params[:item][:name]
+    expect(item['description']).to eq item_params[:item][:description]
+    expect(item['image_url']).to eq item_params[:item][:image_url]
   end
 end
