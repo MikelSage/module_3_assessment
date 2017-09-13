@@ -8,4 +8,8 @@ class BestBuyStore
     @distance = attrs[:distance]
     @type     = attrs[:storeType]
   end
+
+  def self.from_data(zip)
+    
+  end
 end

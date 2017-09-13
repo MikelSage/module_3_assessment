@@ -15,16 +15,20 @@ class BestBuyService
                      format: 'json',
                      pageSize: 10
                     }
-    endpoint = 
+    endpoint = "stores((area(#{zip},25)))"
     response = get_data(endpoint, search_params)
-    JSON.parse(response.body, symbolize_names: true)
+    results = JSON.parse(response.body, symbolize_names: true)
+    {stores: results[:stores], count: results[:total]}
   end
 
   def get_data(endpoint, params)
-
+    conn.get endpoint, params
   end
 
-  def self.find_by_zip(zip)
-    new(zip).find_by_zip
+  def self.find_stores_by_zip(zip)
+    new(zip).find_stores_by_zip
   end
+
+  private
+    attr_reader :conn, :zip
 end
