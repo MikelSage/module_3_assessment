@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BestBuyStore do
-  describe 'creation' do
+  context 'creation' do
     it "can be created with valid attributes" do
       attrs = {
             city: "Denver",
@@ -19,9 +19,5 @@ RSpec.describe BestBuyStore do
         expect(store.distance).to eq attrs[:distance]
         expect(store.type).to eq attrs[:storeType]
     end
-  end
-
-  describe 'class methods' do
-    describe '.from'
   end
 end
