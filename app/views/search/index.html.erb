@@ -1,1 +1,20 @@
-<h1>Search Results</h1>
+<h1><%= @stores.count %> Total Stores</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>Distance</th>
+    <th>Phone</th>
+    <th>Type</th>
+  </tr>
+  <% @stores.each do |store| %>
+    <tr class="store">
+      <th class="name"><%= store.name %></th>
+      <th class="city"><%= store.city %></th>
+      <th class="distance"><%= store.distance %></th>
+      <th class="phone"><%= store.phone %></th>
+      <th class="type"><%= store.type %></th>
+    </tr>
+  <% end %>
+</table>
