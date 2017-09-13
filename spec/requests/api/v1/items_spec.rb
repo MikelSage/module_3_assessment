@@ -40,8 +40,28 @@ describe 'Items API' do
     expect(Item.count).to eq 3
 
     delete "/api/v1/items/#{base_items.last.id}"
-    
+
     expect(response).to have_http_status(:no_content)
     expect(Item.count).to eq 2
+  end
+
+  it "creates an item" do
+    item_params = {
+      name: 'The best item',
+      description: 'You already know what it is',
+      image_url: 'http://via.placeholder.com/350x150'
+    }
+
+    post '/api/v1/items', params: item_params
+
+    item = JSON.parse(response.body)
+
+    expect(response).to have_http_status(:created)
+
+    expect(item).to_not have_key 'created_at'
+    expect(item).to_not have_key 'updated_at'
+    expect(item['name']).to eq item_params['name']
+    expect(item['description']).to eq item_params['description']
+    expect(item['image_url']).to eq item_params['image_url']
   end
 end

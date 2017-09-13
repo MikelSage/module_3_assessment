@@ -9,8 +9,10 @@ class Api::V1::ItemsController < ApplicationController
 
   def destroy
     Item.delete(params[:id])
-    render :nothing => true, :status => 204
+    render nothing: true, status: 204
   end
 
-  
+  def create
+    
+  end
 end
