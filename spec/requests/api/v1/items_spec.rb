@@ -15,5 +15,7 @@ describe 'Items API' do
     expect(item).to have_key 'name'
     expect(item).to have_key 'description'
     expect(item).to have_key 'image_url'
+    expect(item).to_not have_key 'created_at'
+    expect(item).to_not have_key 'updated_at'
   end
 end
