@@ -34,4 +34,14 @@ describe 'Items API' do
     expect(item).to_not have_key 'created_at'
     expect(item).to_not have_key 'updated_at'
   end
+
+  it "deletes the requested item" do
+    base_items = create_list(:item, 3)
+    expect(Item.count).to eq 3
+
+    delete "/api/v1/items/#{base_items.last.id}"
+    
+    expect(response).to have_http_status(:no_content)
+    expect(Item.count).to eq 2
+  end
 end
